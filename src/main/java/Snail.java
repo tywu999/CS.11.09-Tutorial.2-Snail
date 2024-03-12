@@ -1,4 +1,16 @@
 public class Snail {
+    public static void main(String[] args) {
+        int[][] z= new int[][] {
+
+                {1,2,3,4,5},
+                {6,7,8,9,10},
+                {11,12,13,14,15},
+                {16,17,18,19,20},
+                {21,22,23,24,25}
+
+        };
+        flattenSnail(z);
+    }
 
     /**
      *
@@ -26,7 +38,68 @@ public class Snail {
      *         returns an empty array if array2d is not square.
      */
     public static int[] flattenSnail(int[][] array2d) {
-        return null;
+        int[] a = new int[0];
+        if(array2d == null || !isPerfectSquare(array2d)){
+            return a;
+        }
+
+        int asdf = (array2d.length)*(array2d[0].length);
+        int[] map = new int[asdf];
+        int Row = 0;
+        int Col = 0;
+        int countRow = array2d.length;
+        int countCol = array2d[0].length;
+        int mapPlace = 0;
+        while(mapPlace < map.length){
+            for(int z = 0; z < countCol-1; z++){
+                map[mapPlace] = array2d[Row][Col];
+                Col++;
+                mapPlace++;
+            }
+            for(int i = 0; i < Math.min(array2d.length, array2d[0].length); i++){
+                for(int z = 0; z < countRow-1; z++){
+                    if(mapPlace >= map.length){
+                        break;
+                    }
+                    map[mapPlace] = array2d[Row][Col];
+                    Row++;
+                    mapPlace++;
+                }
+                for(int z = 0; z < countCol-1; z++){
+                    if(mapPlace >= map.length){
+                        break;
+                    }
+                    map[mapPlace] = array2d[Row][Col];
+                    mapPlace++;
+                    Col--;
+                }
+                for(int z = 0; z < countRow-2; z++){
+                    if(mapPlace >= map.length){
+                        break;
+                    }
+                    map[mapPlace] = array2d[Row][Col];
+                    mapPlace++;
+                    Row--;
+                }
+                for(int z = 0; z < countCol-2; z++){
+                    if(mapPlace >= map.length){
+                        break;
+                    }
+                    map[mapPlace] = array2d[Row][Col];
+                    Col++;
+                    mapPlace++;
+                }
+                countRow -=2;
+                countCol-=2;
+            }
+            map[map.length-1] = array2d[Row][Col];
+            mapPlace++;
+
+            print1dArray(map);
+        }
+
+
+        return map;
     }
 
     /**
@@ -58,7 +131,68 @@ public class Snail {
      *         returns an empty 2d array if the length of array1d is not a perfect square.
      */
     public static int[][] makeSnail(int[] array1d) {
-        return null;
+        int[][] a = new int[0][0];
+        if(array1d == null || !isPerfectSquare(array1d)){
+            return a;
+        }
+
+        int asdf = (int)Math.sqrt(array1d.length);
+        int[][] map = new int[asdf][asdf];
+        int Row = 0;
+        int Col = 0;
+        int countRow = asdf;
+        int countCol = asdf;
+        int mapPlace = 0;
+        while(mapPlace < map.length){
+            for(int z = 0; z < countCol-1; z++){
+                map[Row][Col] = array1d[mapPlace];
+                Col++;
+                mapPlace++;
+            }
+            for(int i = 0; i < asdf*2; i++){
+                for(int z = 0; z < countRow-1; z++){
+                    if(mapPlace >= array1d.length){
+                        break;
+                    }
+                    map[Row][Col] = array1d[mapPlace];
+                    Row++;
+                    mapPlace++;
+                }
+                for(int z = 0; z < countCol-1; z++){
+                    if(mapPlace >= array1d.length){
+                        break;
+                    }
+                    map[Row][Col] = array1d[mapPlace];
+                    mapPlace++;
+                    Col--;
+                }
+                for(int z = 0; z < countRow-2; z++){
+                    if(mapPlace >= array1d.length){
+                        break;
+                    }
+                    map[Row][Col] = array1d[mapPlace];
+                    mapPlace++;
+                    Row--;
+                }
+                for(int z = 0; z < countCol-2; z++){
+                    if(mapPlace >= array1d.length){
+                        break;
+                    }
+                    map[Row][Col] = array1d[mapPlace];
+                    Col++;
+                    mapPlace++;
+                }
+                countRow -=2;
+                countCol-=2;
+            }
+            map[Row][Col] = array1d[array1d.length-1];
+            mapPlace++;
+
+            print2dArray(map);
+        }
+
+
+        return map;
     }
 
     /**
@@ -71,7 +205,9 @@ public class Snail {
      * @param array1d
      */
     private static void print1dArray(int[] array1d) {
-
+        for(int i = 0; i < array1d.length; i++){
+            System.out.print(array1d[i] + " ");
+        }
     }
 
     /**
@@ -84,7 +220,12 @@ public class Snail {
      * @param array2d
      */
     private static void print2dArray(int[][] array2d) {
-
+        for(int i = 0; i < array2d.length; i++){
+            for(int j = 0; j < array2d.length; j++){
+                System.out.print(array2d[i][j] + " ");
+            }
+            System.out.println("");
+        }
     }
 
     /**
@@ -97,7 +238,12 @@ public class Snail {
      * @return
      */
     private static boolean isPerfectSquare(int[] array1d) {
-        return false;
+        double a = Math.sqrt(array1d.length);
+        int aa = (int)a;
+        if(a-aa != 0.0){
+            return false;
+        }
+        return true;
     }
 
 
@@ -111,7 +257,16 @@ public class Snail {
      * @return
      */
     private static boolean isPerfectSquare(int[][] array2d) {
-        return false;
+        int lengthab = array2d[0].length;
+        for(int i = 0; i < array2d.length; i++){
+            if(array2d[i].length != lengthab){
+                return false;
+            }
+        }
+        if(array2d.length != array2d[0].length){
+            return false;
+        }
+        return true;
     }
 
 

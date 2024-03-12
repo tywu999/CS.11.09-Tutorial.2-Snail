@@ -276,15 +276,15 @@ class SnailTest {
     @org.junit.jupiter.api.Test
     void flattenSnail4() {
 
-        int[] flattenedSnail_1 = Snail.flattenSnail(snail_5);
-        assertEquals(0,flattenedSnail_1.length);
+        int[] flattenedSnail_1 = Snail.flattenSnail(snail_4);
+        assertEquals(100,flattenedSnail_1.length);
 
     }
 
     @org.junit.jupiter.api.Test
     void flattenSnail5() {
 
-        int[] flattenedSnail_1 = Snail.flattenSnail(snail_6);
+        int[] flattenedSnail_1 = Snail.flattenSnail(snail_5);
         assertEquals(0,flattenedSnail_1.length);
 
     }
@@ -292,7 +292,7 @@ class SnailTest {
     @org.junit.jupiter.api.Test
     void flattenSnail6() {
 
-        int[] flattenedSnail_1 = Snail.flattenSnail(snail_7);
+        int[] flattenedSnail_1 = Snail.flattenSnail(snail_6);
         assertEquals(0,flattenedSnail_1.length);
 
     }
@@ -300,7 +300,7 @@ class SnailTest {
     @org.junit.jupiter.api.Test
     void flattenSnail7() {
 
-        int[] flattenedSnail_1 = Snail.flattenSnail(snail_8);
+        int[] flattenedSnail_1 = Snail.flattenSnail(snail_7);
         assertEquals(0,flattenedSnail_1.length);
 
     }
@@ -432,7 +432,7 @@ class SnailTest {
 
         int[][] expectedResult = new int[0][0];
 
-        assertEquals(0,snail.length);
+        assertEquals(0, snail.length);
 
     }
 
